@@ -1,0 +1,277 @@
+/* 
+  Online Lost & Found System - Stylesheet
+  Uses CSS Variables for easy color changes and Flexbox/Grid for layout.
+*/
+
+/* 
+  Online Lost & Found System - Stylesheet
+  ---------------------------------------
+  This file controls how the website looks.
+  We use 'CSS Variables' (in :root) so we can change colors easily.
+*/
+
+:root {
+    --primary-bg: #fdfbf7;
+    --text-color: #333;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --border-radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --font-family: 'Outfit', sans-serif;
+
+    --lost-color: #ff6b6b;
+    --lost-bg: rgba(255, 107, 107, 0.1);
+    --found-color: #1dd1a1;
+    --found-bg: rgba(29, 209, 161, 0.1);
+
+    --btn-hover-transform: translateY(-2px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #fdfbf7 0%, #eef2f3 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    padding: 60px 0 40px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #333, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Grids */
+.forms-grid,
+.lists-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+
+    .forms-grid,
+    .lists-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input:focus {
+    outline: none;
+    border-color: #333;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-lost {
+    background: linear-gradient(135deg, #ff6b6b, #ee5253);
+    box-shadow: 0 4px 15px rgba(238, 82, 83, 0.3);
+}
+
+.btn-found {
+    background: linear-gradient(135deg, #1dd1a1, #10ac84);
+    box-shadow: 0 4px 15px rgba(16, 172, 132, 0.3);
+}
+
+.btn:hover {
+    transform: var(--btn-hover-transform);
+    opacity: 0.95;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.message {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    min-height: 20px;
+}
+
+.success-msg {
+    color: #10ac84;
+    animation: fadeIn 0.5s ease;
+}
+
+.error-msg {
+    color: #ee5253;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Lists */
+.list-container {
+    min-height: 100px;
+}
+
+.empty-state {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+.item-entry {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #ddd;
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-entry.lost {
+    border-left-color: var(--lost-color);
+    background: linear-gradient(to right, white, var(--lost-bg));
+}
+
+.item-entry.found {
+    border-left-color: var(--found-color);
+    background: linear-gradient(to right, white, var(--found-bg));
+}
+
+.item-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.item-details p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 2px 0;
+}
+
+.item-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #999;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+footer {
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
